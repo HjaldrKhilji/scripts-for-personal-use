@@ -3,7 +3,7 @@ base_path="/mnt/heavy_working_files/Files used by personal scripts/files used by
 run_if_date_file_dosent_exist(){
 	/sbin/fstrim --all
 	umask 0
-	touch "${base_path}/$1" #removing 
+	touch "${base_path}/$1" #adding 
 	rm -f "${base_path}/$2" #removing previous date
 }
 check_if_date_exists() {
@@ -13,4 +13,3 @@ if [[ ! -e "${base_path}/${current_date}" ]]; then
 fi
 }
 check_if_date_exists
-#file should have execute and read permissions only for all users

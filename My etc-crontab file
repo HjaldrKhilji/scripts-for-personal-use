@@ -16,4 +16,10 @@ HOME=/
 # *  *  *  *  * user-name  command to be executed
 
 #   Mins  Hours  Days   Months  Day of the week  Command
-    *     *      *	    *       *                "/mnt/personal_files/scripts for personal use/fstrim all mounted partitions.bash"
+    *     *      *      *       *                /.scripts_for_personal_use/fstrim_all_mounted_partitions.bash
+#as always make sure this file is ending with a black line like this one:
+
+#make sure you add the users to the group cron: gpasswd -a user_name cron and log back in for it to take affect and execute other cron daemon specific steps, like for cronie managing:
+#/etc/fcron/fcron.deny  and /etc/fcron/fcron.allow, but if both dont exist then all users will be allowed but if both exist and you want all users to be allowed then leave .deny empty and put "all" in fcron.allow
+#note that in both fcron.deny and fcron.allow, every line should only contain one username only. I am gonna end this file with a empty line like you always should for crontab to execute properly:
+

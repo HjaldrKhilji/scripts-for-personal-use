@@ -4,6 +4,9 @@ run_if_date_file_dosent_exist(){
         for dir in /media/HDD_partitions/*; do
                 if [[ -d "$dir" ]]; then
                          xfs_fsr $dir;
+				#this ofcourse assumes that all your partitions are xfs or else you would have to put xfs partitions in another directory such that the directory only has xfs directories 
+				#and change the path in this script accordingly. you would also have to ofcourse those other partitions of those different types of file systems in respective 
+				#directroies and run respective defrag commands for them.
                 fi
         done
 	umask 0

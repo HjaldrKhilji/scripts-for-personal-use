@@ -1,3 +1,4 @@
+#!/usr/bin/bash
 base_path="/.Files used by personal scripts/files used by crontab's daily HDD defrag operation"
 run_if_date_file_dosent_exist(){
         for dir in /media/HDD_partitions/*; do

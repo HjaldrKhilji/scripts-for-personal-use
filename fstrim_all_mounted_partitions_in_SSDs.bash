@@ -1,5 +1,5 @@
 #!/usr/bin/bash
-base_path="/mnt/heavy_working_files/Files used by personal scripts/files used by crontab's daily fstrim operation"
+base_path="/.Files used by personal scripts/files used by crontab's daily SSD fstrim operation"
 run_if_date_file_dosent_exist(){
 	/sbin/fstrim --all
 	umask 0

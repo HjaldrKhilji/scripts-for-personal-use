@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 base_path="/.Files used by personal scripts/files used by crontab's daily SSD fstrim operation"
 run_if_date_file_dosent_exist(){
-	/sbin/fstrim --all
+    /usr/bin/fstrim --all
 	umask 0
 	touch "${base_path}/$1" #adding 
 	rm -f "${base_path}/$2" #removing previous date

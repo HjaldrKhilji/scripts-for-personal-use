@@ -3,7 +3,7 @@ base_path="/.Files used by personal scripts/files used by crontab's daily HDD de
 run_if_date_file_dosent_exist(){
         for dir in /media/HDD_partitions/*; do
                 if [[ -d "$dir" ]]; then
-                         xfs-fsr $dir;
+                         xfs_fsr $dir;
                 fi
         done
 	umask 0

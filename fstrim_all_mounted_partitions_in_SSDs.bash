@@ -9,7 +9,7 @@ run_if_date_file_dosent_exist(){
 check_if_date_exists() {
 current_date=$(date "+%A")
 if [[ ! -e "${base_path}/${current_date}" ]]; then
-        if [[ ! $("/.scripts_for_personal_use/shared_scripts fstrim/check_if_process_exist.bash") ]]; then
+        if [[ ! $("/.scripts_for_personal_use/shared_scripts/check_if_process_exist.bash fstrim") ]]; then
                 run_if_date_file_dosent_exist "${current_date}" "$(date --date "1 day ago" "+%A")"      
         fi
 fi

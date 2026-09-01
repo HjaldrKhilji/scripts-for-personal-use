@@ -16,7 +16,8 @@ HOME=/
 # *  *  *  *  * user-name  command to be executed
 
 #   Mins  Hours  Days   Months  Day of the week  Command
-    *     *      *      *       *                /.scripts_for_personal_use/fstrim_all_mounted_partitions.bash
+    *     *      *      *       *                /.scripts_for_personal_use/fstrim_all_mounted_partitions_in_SSDs.bash
+    *     *      *      *       *                /.scripts_for_personal_use/defrag_all_mounted_partitions_in_HDDs.bash
 #as always make sure this file is ending with a black line like this one:
 
 #make sure you add the users to the group cron: gpasswd -a user_name cron and log back in for it to take affect and execute other cron daemon specific steps, like for cronie managing:
@@ -28,4 +29,5 @@ HOME=/
 #the exact semantics of managing /etc/fcron/fcron.deny and /etc/fcron.deny depends on the specific cron daemon but the above steps even though are for cronie, should give an idea to help you read them for other cron daemons in the link below:
 #https://wiki.gentoo.org/wiki/Cron
 #note that in both fcron.deny and fcron.allow, every line should only contain one username only. I am gonna end this file with a empty line like you always should for crontab to execute properly:
+
 

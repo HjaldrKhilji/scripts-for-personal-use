@@ -1,0 +1,7 @@
+sudo dracut --uefi  --kernel-image /HDD_partitions/personal_files/downloads/vmlinuz64  --include /HDD_partitions/personal_files/downloads/core.gz /core.gz --include /HDD_partitions/personal_files/downloads/modules64.gz /modules64.gz   --kernel-cmdline "quiet"   /efi/EFI/Linux/tinycore.efi
+#Last night I felt very tempted to install tiny core linux, but then asked myself how to do it, and AI told me that I cant do it without needing a usb or a DVD, hence I decided to spend the day researching, and found this blessing:
+#https://www.man7.org/linux/man-pages/man8/dracut.8.html
+Now ofcourse you will have to extract the rootfs.gz:
+#extra rootfs's ( the file thats inside rootfs.gz ) content to the respective partition that is to be the root of the other system, in my case tiny core
+#to do
+#ofcourse the exact steps may vary but this is a general guide

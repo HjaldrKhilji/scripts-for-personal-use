@@ -4,7 +4,7 @@ sudo dracut --uefi  --kernel-image /HDD_partitions/personal_files/downloads/vmli
 #Now ofcourse you will have to extract the rootfs.gz:
 #extra rootfs's ( the file thats inside rootfs.gz ) content to the respective partition that is to be the root of the other system, in my case tiny core:
 #add this to /etc/grub.d/40_custom:
-#!/bin/sh
+##!/bin/sh
 exec tail -n +3 $0
 # This file provides an easy way to add custom menu entries.  Simply type the
 # menu entries you want to add after this comment.  Be careful not to change
@@ -14,10 +14,14 @@ menuentry 'tiny-core linux' --class linux --class gnu-linux --class gnu --class 
                 insmod chain
                 insmod part_gpt
                 insmod fat
-                search --no-floppy --fs-uuid --set=root 7065-BAB0
+                search --no-floppy --fs-uuid --set=root b1ad027f-e3fc-4937-85ea-1a34a0b61a92
                 echo    'Loading UKI tinycore.efi ...'
-                chainloader     /EFI/Linux/tinycore.efi root=UUID=b1ad027f-e3fc-4937-85ea-1a34a0b61a92 ro quiet resume=PARTUUID>
+                chainloader     /EFI/Linux/tinycore.efi  ro single net.ifnames=1 quiet splash resume=PARTUUID='89d25cfd-8f81-42d7-a80b-439323a04033'
+
         }
+
+
+
 
 #and then simply run:
 grub-mkconfig -o /efi/EFI/Gentoo/grub.cfg

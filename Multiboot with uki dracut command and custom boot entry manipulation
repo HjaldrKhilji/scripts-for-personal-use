@@ -1,7 +1,26 @@
 sudo dracut --uefi  --kernel-image /HDD_partitions/personal_files/downloads/vmlinuz64  --include /HDD_partitions/personal_files/downloads/core.gz /core.gz --include /HDD_partitions/personal_files/downloads/modules64.gz /modules64.gz   --kernel-cmdline "quiet"   /efi/EFI/Linux/tinycore.efi
 #Last night I felt very tempted to install tiny core linux, but then asked myself how to do it, and AI told me that I cant do it without needing a usb or a DVD, hence I decided to spend the day researching, and found this blessing:
 #https://www.man7.org/linux/man-pages/man8/dracut.8.html
-Now ofcourse you will have to extract the rootfs.gz:
-#extra rootfs's ( the file thats inside rootfs.gz ) content to the respective partition that is to be the root of the other system, in my case tiny core
-#to do
+#Now ofcourse you will have to extract the rootfs.gz:
+#extra rootfs's ( the file thats inside rootfs.gz ) content to the respective partition that is to be the root of the other system, in my case tiny core:
+#add this to /etc/grub.d/40_custom:
+#!/bin/sh
+exec tail -n +3 $0
+# This file provides an easy way to add custom menu entries.  Simply type the
+# menu entries you want to add after this comment.  Be careful not to change
+# the 'exec tail' line above.
+menuentry 'tiny-core linux' --class linux --class gnu-linux --class gnu --class os $menuentry_id_option 'linux-tinycore-808536ca-a857-444e-84c4-309ba5b6b525' {
+                load_video
+                insmod chain
+                insmod part_gpt
+                insmod fat
+                search --no-floppy --fs-uuid --set=root 7065-BAB0
+                echo    'Loading UKI tinycore.efi ...'
+                chainloader     /EFI/Linux/tinycore.efi root=UUID=b1ad027f-e3fc-4937-85ea-1a34a0b61a92 ro quiet resume=PARTUUID>
+        }
+
+#and then simply run:
+grub-mkconfig -o /efi/EFI/Gentoo/grub.cfg
+
+
 #ofcourse the exact steps may vary but this is a general guide

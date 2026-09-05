@@ -24,3 +24,4 @@ Button(master, text='apply', command=run_command).pack()
 mainloop()
 
 #to install tkinter, buld python with the "tk" USE flag
+#if tkinter shows wierd behaviour, it may be worth adding the "tk" USE flag in /etc/portage/make.conf itself

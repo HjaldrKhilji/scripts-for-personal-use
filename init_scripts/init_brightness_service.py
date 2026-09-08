@@ -30,7 +30,7 @@ def log_error(error_message):
 def construct_command(init_system_name, service_path):
 	return f"{init_system_command_prefix[init_system_name]} '{service_path}' {init_system_command_postfix[init_system_name]}"
 def change_perms_to_appropriate(service_path):
-	os.system(f"chmod 751 '{service_path}'")
+	os.system(f"chmod 777 '{service_path}'")
 def main():
 	if (len(sys.argv)==1):
 		log_error("zero arguments passed (guaranteed human error)")

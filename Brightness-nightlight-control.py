@@ -51,8 +51,9 @@ def save_settings_persistently(nightlight_value, brightness_value):
 		json.dump(settings, f)
 
 def update_settings(nightlight_value, brightness_value):
-        os.system(f"gammastep -P -O {nightlight_value} -b {brightness_value} &> /dev/null ")
-        update_init_system(nightlight_value, brightness_value)
+	os.system(f"gammastep -P -O {nightlight_value} -b {brightness_value} &> /dev/null ")
+	update_init_system(nightlight_value, brightness_value)
+	save_settings_persistently(nightlight_value, brightness_value*100)
 
 def format_brightness(brightness_value):
 	return int(brightness_value)/100
@@ -69,6 +70,7 @@ def update_brightness(brightness_param):
 	global nightlight_value
 	brightness_value=brightness_param
 	update_settings(nightlight_value, format_brightness(brightness_value))
+	
 def load_settings():
 	with open(file_with_all_values, "r") as f:
 		settings = json.load(f)

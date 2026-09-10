@@ -31,18 +31,6 @@ def log_error(error_message):
         logger.critical(f"{error_message}, reported to file {error_file_path}")
         file_handler.close()
 
-def update_init_system(nightlight_value, brightness_value):
-	if (len(sys.argv)==1):
-		print("no init system provided (SKIPPING)" )
-		return
-	elif (sys.argv[1]=="openrc"):
-        	with open(service_file, "w+") as f:
-                	f.write(f"""	#!/sbin/openrc-run 
-					gammastep -P -O {nightlight_value} -b {brightness_value}	
-				""")
-	#eventually the code for each must be broken into functions or atleast for for some init systems
-	else:
-		log_error("init system not supported")
 
 def save_settings_persistently(nightlight_value, brightness_value):
 	with open(file_with_all_values, "w") as f:
@@ -54,7 +42,6 @@ def save_settings_persistently(nightlight_value, brightness_value):
 
 def update_settings(nightlight_value, brightness_value):
 	os.system(f"gammastep -P -O {nightlight_value} -b {brightness_value} &> /dev/null ")
-	update_init_system(nightlight_value, brightness_value)
 	save_settings_persistently(nightlight_value, brightness_value*100)
 
 def format_brightness(brightness_value):

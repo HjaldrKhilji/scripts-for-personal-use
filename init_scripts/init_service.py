@@ -20,7 +20,7 @@ script_based_init_systems={
 def log_error(error_message):
 	import logging
 	import uuid
-	error_file_path=f"/tmp/init_brightness_service_error_{uuid.uuid4()}"
+	error_file_path=f"/tmp/init_service_error_{uuid.uuid4()}"
 	file_handler= logging.FileHandler(error_file_path, mode="w+", encoding="utf-8")
 	stderr_handler= logging.StreamHandler()
 	logger=logging.getLogger("logger")

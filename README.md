@@ -8,3 +8,7 @@ else if you don't like the names (you might not prefer spaces in file paths espe
 For the crontab file to work, the scripts used there must be in:
 /.scripts_for_personal_use/
 that is unless you change the path yourself, of course.
+### The code at:
+scripts-for-personal-use/shared_scripts
+/get_unique_words.cpp
+is generally useful for any project especially the ones I am working on.

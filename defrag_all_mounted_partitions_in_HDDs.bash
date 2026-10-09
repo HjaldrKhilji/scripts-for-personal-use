@@ -1,25 +1,25 @@
 #!/usr/bin/bash
 base_path="/.Files used by personal scripts/files used by crontab's daily HDD defrag operation"
 run_if_date_file_dosent_exist(){
-        for dir in /media/HDD_partitions/*; do
-                if [[ -d "$dir" ]]; then
-                         xfs_fsr $dir;
-				#this ofcourse assumes that all your partitions are xfs or else you would have to put xfs partitions in another directory such that the directory only has xfs directories 
-				#and change the path in this script accordingly. you would also have to ofcourse those other partitions of those different types of file systems in respective 
-				#directroies and run respective defrag commands for them.
-                fi
-        done
+	for dir in /HDD_partitions/*; do
+	        if [[ -d "$dir" ]]; then
+			 xfs_fsr $dir;
+		fi
+	done
 	umask 0
-        touch "${base_path}/$1" #adding 
-        rm -f "${base_path}/$2" #removing previous date
+	touch "${base_path}/$1" #adding 
+	rm -f "${base_path}/$2" #removing previous date
 }
 
 check_if_date_exists() {
 current_date=$(date "+%A")
 if [[ ! -e "${base_path}/${current_date}" ]]; then
-        if [[ ! $("/.scripts_for_personal_use/shared_scripts/check_if_process_exist.bash xfs-fsr") ]]; then
+        if [[ ! $("/.scripts_for_personal_use/shared_scripts/check_if_process_exist.bash" xfs_fsr) ]]; then
                 run_if_date_file_dosent_exist "${current_date}" "$(date --date "1 day ago" "+%A")"      
-        fi
+        else
+		"none"
+	fi
+	
 fi
 
 }

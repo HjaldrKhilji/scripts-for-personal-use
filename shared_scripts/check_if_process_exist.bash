@@ -4,3 +4,4 @@ if [[ $(ps -e | grep "$1\$") != "" ]]; then
 else
 	echo 0
 fi
+#personalized alternative to "pgrep $1"

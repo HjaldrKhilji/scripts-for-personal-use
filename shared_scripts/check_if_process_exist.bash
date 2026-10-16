@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-if [[ $(ps -e | grep "$1\$") != "" ]]; then
+if [[ $(ps -e | grep -E '.{26}'$1) != "" ]]; then
 	echo 1
 else
 	echo 0

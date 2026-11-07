@@ -1,25 +1,28 @@
 #!/usr/bin/bash
 base_path="/.Files used by personal scripts/files used by crontab's daily HDD defrag operation"
 run_if_date_file_dosent_exist(){
-	for dir in /HDD_partitions/*; do
-	        if [[ -d "$dir" ]]; then
-			 xfs_fsr $dir;
-		fi
-	done
+        for dir in /HDD_partitions/*; do
+                if [[ -d "$dir" ]]; then
+                         xfs_fsr $dir;
+                fi
+        done
 	umask 0
-	touch "${base_path}/$1" #adding 
-	rm -f "${base_path}/$2" #removing previous date
+        touch "${base_path}/$1" #adding 
+        rm -f "${base_path}/$2" #removing previous date
+        echo "Kein probleme in die ComputerOperation"
 }
-
+check_if_process_exists(){
+return "$(/.scripts_for_personal_use/shared_scripts/check_if_process_exist.bash xfs_fsr)"
+}
 check_if_date_exists() {
 current_date=$(date "+%A")
-if [[ ! -e "${base_path}/${current_date}" ]]; then
-        if [[ ! $("/.scripts_for_personal_use/shared_scripts/check_if_process_exist.bash" xfs_fsr) ]]; then
+if ! [[ -e "${base_path}/${current_date}" ]]; then
+        if [[ -z $(check_if_process_exists) ]]; then
                 run_if_date_file_dosent_exist "${current_date}" "$(date --date "1 day ago" "+%A")"      
         else
-		"none"
-	fi
-	
+            	"none"
+        fi
+
 fi
 
 }
